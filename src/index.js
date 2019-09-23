@@ -11,8 +11,8 @@ function bracketsBalance(expr) {
     // find out the number of close brackets
     let bracketEnd = expr.split("(").length - 1;
     
-    // return value balance brackets 
-    return bracketEnd - bracketBegin;
+    // return status balance brackets 
+    return bracketEnd === bracketBegin;
     
 }
 
@@ -23,10 +23,10 @@ function expressionCalculator(expr) {
     let bracketsSuccess = bracketsBalance(expr);
 
     // if valid brackets
-    if (!bracketsSuccess) {
+    if (bracketsSuccess) {
 
         // get the value of the expression
-        let resultCalc = new Function('return ' + expr)();
+        let resultCalc = (new Function('return ' + expr))();
         
         // if division by zero 
         if (resultCalc === Infinity) {
