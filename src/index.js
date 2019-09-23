@@ -22,8 +22,13 @@ function expressionCalculator(expr) {
     // valid brackets
     let bracketsSuccess = bracketsBalance(expr);
 
-    // if valid brackets
-    if (bracketsSuccess) {
+    // if not valid brackets
+    if (bracketsSuccess !== true) {
+
+        throw new Error("ExpressionError: Brackets must be paired");
+
+    // else if valid brackets
+    } else {
 
         // get the value of the expression
         let resultCalc = (new Function('return ' + expr))();
@@ -36,15 +41,12 @@ function expressionCalculator(expr) {
         } else {
 
             // write result expression
-            return resultCalc;
+            //console.log(typeof resultCalc, Number(resultCalc.toFixed(4)));
+            let result = + Number(resultCalc.toFixed(4))
+            return result;
 
         } 
     
-    // else if not valid brackets
-    } else {
-
-        throw new Error("ExpressionError: Brackets must be paired");
-
     }
 
 }
